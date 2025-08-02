@@ -1,14 +1,21 @@
+import { BaseEditor } from "slate";
+import { ReactEditor } from "slate-react";
 
-import { BaseEditor } from 'slate'
-import { ReactEditor } from 'slate-react'
+type CustomElement = {
+  type:
+    | "paragraph"
+    | "heading-one"
+    | "list-item"
+    | "numbered-list"
+    | "bulleted-list";
+  children: CustomText[];
+};
+type CustomText = { text: string; bold?: true; italic?: true };
 
-type CustomElement = { type: 'paragraph'; children: CustomText[] }
-type CustomText = { text: string; bold?: true; italic?: true }
-
-declare module 'slate' {
+declare module "slate" {
   interface CustomTypes {
-    Editor: BaseEditor & ReactEditor
-    Element: CustomElement
-    Text: CustomText
+    Editor: BaseEditor & ReactEditor;
+    Element: CustomElement;
+    Text: CustomText;
   }
 }
